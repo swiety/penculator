@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<main class="calculator" id="calculator">
+  <div class="intro">
+    <p class="eyebrow">A LITTLE MATH, MADE SIMPLE</p>
+    <h1>Pen dose calculator</h1>
+    <p>Combine amounts from your pen into one clear calculation.</p>
+  </div>
+
+  <section class="card" aria-labelledby="calculator-heading">
+    <div class="section-heading"><span class="step">01</span><div><h2 id="calculator-heading">Set up your calculation</h2><p>Choose your pen, then enter one or more amounts below.</p></div></div>
+    <form id="dose-form" novalidate>
+      <div class="field pen-field">
+        <label for="pen">Pen type</label>
+        <select id="pen" name="pen"><option value="15">Mounjaro 15 mg KwikPen</option></select>
+        <p class="hint">4 fixed doses · 15 mg / 0.6 ml per dose</p>
+      </div>
+      <div class="divider"></div>
+      <div class="input-heading"><h3>Enter your amounts</h3><p>Values in different fields are added together.</p></div>
+      <div class="fields">
+        <div class="field"><label for="mg">Amount <span>in mg</span></label><input id="mg" name="mg" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><span class="unit">mg</span></div>
+        <div class="field"><label for="ml">Volume <span>in ml</span></label><input id="ml" name="ml" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><span class="unit">ml</span></div>
+        <div class="field"><label for="clicks">Clicks <span>assumed</span></label><input id="clicks" name="clicks" type="text" inputmode="numeric" placeholder="0" aria-describedby="click-warning error"><span class="unit">clicks</span></div>
+        <div class="field"><label for="fortieths">Fortieths <span>of 1 ml</span></label><input id="fortieths" name="fortieths" type="text" inputmode="numeric" placeholder="0" aria-describedby="amount-help error"><span class="unit">1/40 ml</span></div>
+      </div>
+      <p id="amount-help" class="hint">Enter at least one positive amount. Decimal values may use a comma or point.</p>
+      <p id="click-warning" class="notice"><strong>About clicks:</strong> The 60-click relationship is an unverified assumption. The manufacturer advises against counting clicks to select a dose.</p>
+      <p id="error" class="error" role="alert" hidden></p>
+      <button type="submit">Calculate total <span aria-hidden="true">→</span></button>
+    </form>
+  </section>
+
+  <section id="result" class="result card" aria-labelledby="result-heading" aria-live="polite" hidden>
+    <div class="section-heading"><span class="step result-step">02</span><div><h2 id="result-heading">Your calculated total</h2><p>Mathematical equivalent</p></div></div>
+    <div class="result-values"><div><p>AMOUNT</p><strong id="result-mg"></strong></div><div><p>VOLUME</p><strong id="result-ml"></strong></div></div>
+    <p id="result-click-warning" class="hint" hidden>This result includes the unverified 60-click assumption; the manufacturer advises against counting clicks to select a dose.</p>
+  </section>
+
+  <aside class="context" aria-label="Important information"><div class="context-icon" aria-hidden="true">i</div><div><h2>Before you go</h2><p>This is a mathematical conversion, not a dose recommendation or instructions for using a pen. A fractional result does not establish that the pen can deliver it. Follow your prescribed dose and consult your doctor or pharmacist about use.</p><p>After the four fixed doses, do not use any remaining medicine. Check the information supplied with your own product and read the <a href="https://www.medicines.org.uk/emc/product/15486/pil">manufacturer’s patient leaflet</a>.</p></div></aside>
+</main>
+<footer class="disclaimer">Not intended for medical purposes.</footer>
+<script type="module" src="{{ '/assets/js/app.js' | relative_url }}"></script>

@@ -4,7 +4,7 @@ These commands describe the planned application after implementation; the files 
 
 ## Prerequisites and setup
 
-Install Node.js 22 or later, Ruby and Bundler. From the repository root, install the project's GitHub Pages-compatible Jekyll dependencies:
+Install Node.js 22 or later, Ruby 3.3 and Bundler. GitHub Pages Jekyll/Liquid is incompatible with Ruby 4; Ruby 3.3 local preview remains to be verified. From the repository root, install the project's GitHub Pages-compatible Jekyll dependencies:
 
 ```sh
 bundle install

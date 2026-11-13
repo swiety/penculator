@@ -1,0 +1,10 @@
+title: Penculator
+description: A simple pen amount calculator
+theme: minima
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - tests
+  - specs
+  - README.md
