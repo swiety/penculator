@@ -20,15 +20,14 @@ layout: default
       <div class="divider"></div>
       <div class="input-heading"><h3>Enter your amounts</h3><p>Values in different fields are added together.</p></div>
       <div class="fields">
-        <div class="field"><label for="mg">Amount <span>in mg</span></label><input id="mg" name="mg" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><span class="unit">mg</span></div>
-        <div class="field"><label for="ml">Volume <span>in ml</span></label><input id="ml" name="ml" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><span class="unit">ml</span></div>
-        <div class="field"><label for="clicks">Clicks <span>assumed</span></label><input id="clicks" name="clicks" type="text" inputmode="numeric" placeholder="0" aria-describedby="click-warning error"><span class="unit">clicks</span></div>
-        <div class="field"><label for="fortieths">Fortieths <span>of 1 ml</span></label><input id="fortieths" name="fortieths" type="text" inputmode="numeric" placeholder="0" aria-describedby="amount-help error"><span class="unit">1/40 ml</span></div>
+        <div class="field"><label for="mg">Amount <span>in mg</span></label><input id="mg" name="mg" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><span class="unit">mg</span><div class="step-buttons"><button type="button" data-field="mg" data-direction="-1" aria-label="Decrease mg">−</button><button type="button" data-field="mg" data-direction="1" aria-label="Increase mg">+</button></div></div>
+        <div class="field"><label for="ml">Volume <span>in ml</span></label><input id="ml" name="ml" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><span class="unit">ml</span><div class="step-buttons"><button type="button" data-field="ml" data-direction="-1" aria-label="Decrease ml">−</button><button type="button" data-field="ml" data-direction="1" aria-label="Increase ml">+</button></div></div>
+        <div class="field"><label for="clicks">Clicks <span>assumed</span></label><input id="clicks" name="clicks" type="text" inputmode="numeric" placeholder="0" aria-describedby="click-warning error"><span class="unit">clicks</span><div class="step-buttons"><button type="button" data-field="clicks" data-direction="-1" aria-label="Decrease clicks">−</button><button type="button" data-field="clicks" data-direction="1" aria-label="Increase clicks">+</button></div></div>
+        <div class="field"><label for="fortieths">Fortieths <span>of 1 ml</span></label><input id="fortieths" name="fortieths" type="text" inputmode="numeric" placeholder="0" aria-describedby="amount-help error"><span class="unit">1/40 ml</span><div class="step-buttons"><button type="button" data-field="fortieths" data-direction="-1" aria-label="Decrease fortieths">−</button><button type="button" data-field="fortieths" data-direction="1" aria-label="Increase fortieths">+</button></div></div>
       </div>
       <p id="amount-help" class="hint">Enter at least one positive amount. Decimal values may use a comma or point.</p>
       <p id="click-warning" class="notice"><strong>About clicks:</strong> The 60-click relationship is an unverified assumption. The manufacturer advises against counting clicks to select a dose.</p>
-      <p id="error" class="error" role="alert" hidden></p>
-      <button type="submit">Calculate total <span aria-hidden="true">→</span></button>
+      <p id="error" class="error" role="status" aria-live="polite" hidden></p>
     </form>
   </section>
 

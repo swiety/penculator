@@ -2,6 +2,10 @@
 
 A static calculator for adding pen amounts expressed in mg, ml, clicks and fortieths of a millilitre. Results are mathematical conversions, not dosing advice. The 60-click relationship is an unverified assumption; the manufacturer advises against counting clicks to select a dose. This application is not intended for medical purposes.
 
+## Using the calculator
+
+Enter one or more amounts; the combined total updates automatically. Use the plus and minus controls to adjust each field. Values in the fields are added together.
+
 ## Development
 
 Install Node.js 22 or later, Ruby 3.3 and Bundler. The GitHub Pages Jekyll/Liquid versions are not compatible with Ruby 4; use Ruby 3.3 for the standard local commands below. From the repository root:

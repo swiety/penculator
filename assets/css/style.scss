@@ -48,3 +48,6 @@ a { color: #356f55; text-decoration: underline; }
 .disclaimer { text-align: center; color: #8b9991; font-size: .76rem; padding: 18px 0 30px; }
 [hidden] { display: none !important; }
 @media (max-width: 480px) { .page-content { padding-top: 24px; } .card { padding: 20px; } .fields { grid-template-columns: 1fr; } .result-values { grid-template-columns: 1fr 1fr; } .result-values strong { font-size: 1.1rem; } }
+.step-buttons { display: flex; gap: 6px; margin-top: 7px; }
+.step-buttons button { display: grid; place-items: center; width: 48px; min-height: 40px; padding: 4px; border: 1px solid #d7e1d9; border-radius: 8px; background: #f4f8f4; color: #285b45; font-size: 1.1rem; }
+.step-buttons button:hover { background: #e2f0e5; }

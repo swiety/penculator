@@ -4,7 +4,7 @@ const fields = ['mg', 'ml', 'clicks', 'fortieths'];
 const doseMg = BigInt(pen.doseMg);
 const factors = { mg: [1n, 1n], ml: [doseMg * 10n, 6n], clicks: [doseMg, BigInt(pen.assumedClicks)], fortieths: [doseMg * 10n, 6n * 40n] };
 
-function parse(value, field) {
+export function parse(value, field) {
   const text = String(value ?? '').trim();
   if (!text) return [0n, 1n];
   const pattern = field === 'mg' || field === 'ml' ? /^\d+(?:[.,]\d+)?$/ : /^\d+$/;
