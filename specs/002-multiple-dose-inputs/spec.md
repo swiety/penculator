@@ -4,7 +4,7 @@
 
 **Created**: 2026-11-13
 
-**Status**: Draft — awaiting clarification
+**Status**: Draft — ready for planning
 
 **Input**: User description: "Start with 15mg pen, it contains 4 doses, each of 15mg/0.6ml. The user will pick up a pen type (for now only 15mg is supported), then will have 4 numeric input fields, allowing to enter respectively: amount of mgs, amount of mls, number of clicks, amount of 1/40s of 1ml. User enters a numeric values to at least 1 of those 4 input fields. The application calculates the over dose size in both mgs and mls and displays them to the user. 60 clicks make a 15mg doze. The application also displays a disclaimer bottom of the screen that it is not intended to be used for medical purposes."
 
@@ -32,11 +32,12 @@ A user may fill more than one field and receive a result according to a consiste
 
 **Why this priority**: The requested interface explicitly permits at least one field, including multiple fields.
 
-**Independent Test**: Enter 1 mg and 0.1 ml, and verify the behavior against the resolved rule below.
+**Independent Test**: Enter 1 mg and 0.1 ml and verify that the combined result is 3.5 mg and 0.14 ml.
 
 **Acceptance Scenarios**:
 
-1. **Given** two or more populated fields, **When** the user requests a result, **Then** the application applies the resolved multiple-field rule in FR-004.
+1. **Given** the 15 mg pen is selected, **When** the user enters 1 mg and 0.1 ml, **Then** the application adds their equivalents and displays 3.5 mg and 0.14 ml.
+2. **Given** the 15 mg pen is selected, **When** the user enters 10 mg and 0.3 ml, **Then** the combined amount exceeds one labelled dose and no result is displayed.
 
 ### User Story 3 - Understand the calculation's limits (Priority: P2)
 
@@ -66,10 +67,10 @@ A user sees the product context, the limitations of mathematical conversions and
 - **FR-001**: The application MUST provide a pen-type selection with Mounjaro 15 mg KwikPen as the only supported choice, and identify four labelled doses of 15 mg in 0.6 ml each.
 - **FR-002**: The application MUST provide four separately labelled numeric fields: mg, ml, clicks, and count of 1/40 ml units; at least one positive value is required.
 - **FR-003**: For a single populated field, the application MUST calculate the corresponding amount in mg and ml using 15 mg per 0.6 ml, 60 clicks per 15 mg as the user-supplied assumption, and 1 unit equal to 1/40 ml.
-- **FR-004**: [NEEDS CLARIFICATION: When multiple fields contain values, should the application add their represented amounts, or treat them as alternative representations of the same amount?]
+- **FR-004**: The application MUST treat each populated field as a separate amount, convert each using the ratios in FR-003, and add the amounts to obtain a combined result in mg and ml. The inputs MUST be summed before result rounding.
 - **FR-005**: The application MUST display the calculated amount with both mg and ml units. Results MUST be rounded to at most four decimal places in each unit, to nearest with ties away from zero, and any rounded value MUST be labelled approximate. Values that would round to zero in either unit MUST be rejected with an explanation.
 - **FR-006**: The application MUST accept decimal points and commas for mg and ml; clicks and 1/40 ml units MUST be whole numbers. Empty fields contribute no value; malformed, negative, or zero-only entries MUST produce an explanation and no result. Individual zero values may accompany positive values.
-- **FR-007**: The application MUST reject a calculated total greater than 15 mg or 0.6 ml, with a message explaining the one-labelled-dose limit. The interpretation of multiple entries is subject to FR-004.
+- **FR-007**: The application MUST reject a calculated total greater than 15 mg or 0.6 ml, with a message explaining the one-labelled-dose limit. The limit applies to the combined amount before rounding.
 - **FR-008**: Changing or clearing any input MUST clear or update any previous result, and the user MUST be able to perform another calculation.
 - **FR-009**: The application MUST show a disclaimer at the bottom of the screen stating that it is not intended for medical purposes.
 - **FR-010**: The calculation view MUST say that conversions are mathematical, not dosing advice or operating instructions; that a fractional calculation does not establish deliverability; and that the user should follow the prescribed dose and consult a doctor or pharmacist about use.
@@ -87,7 +88,7 @@ A user sees the product context, the limitations of mathematical conversions and
 
 ### Measurable Outcomes
 
-- **SC-001**: All four single-input acceptance examples yield the specified mg and ml values; 100% of a representative test set of conversions and rounding boundaries matches independently calculated expectations.
+- **SC-001**: All single-input and multi-input acceptance examples yield the specified mg and ml values; 100% of a representative test set of conversions and rounding boundaries matches independently calculated expectations.
 - **SC-002**: All specified invalid, precision-limit and over-limit cases produce no result and show a corrective explanation in acceptance testing.
 - **SC-003**: At least 90% of first-time test users can select the pen, use any chosen input field, and find both units of the result within 45 seconds without assistance.
 - **SC-004**: In phone and desktop usability checks, all participants can locate the disclaimer and click limitation.
