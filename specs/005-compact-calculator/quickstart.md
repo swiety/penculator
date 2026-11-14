@@ -24,3 +24,10 @@ Open the printed local URL in a browser. Expect the complete existing calculatio
 6. Repeat a calculation with `bundle exec jekyll serve --baseurl /penculator` at the corresponding project subpath to check asset loading and behavior.
 
 Refer to [UI contract](contracts/ui.md) and [data model](data-model.md) for detailed expectations. Record browser versions, viewport measurements, input method, test outcomes and any checks not performed.
+
+## Implementation check record — 2026-11-14
+
+- `node --test`: 13 passed, 0 failed after the layout changes.
+- Default local Jekyll startup failed: active Ruby 4.0.9 is incompatible with the locked Liquid version (`String#tainted?` is missing); the README specifies Ruby 3.3. A project-subpath build completed using a temporary Ruby 4 compatibility shim, but the site was not browser-verified.
+- Browser-access host was unavailable in this session. Actual viewport fit, 320-pixel and enlarged-text reflow, focus and pointer/touch interactions, warning states, and project-subpath behavior remain unverified.
+- No first-time participants were available; SC-003 is not verified.
