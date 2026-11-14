@@ -18,3 +18,8 @@ Open the address printed by Jekyll. To check a project-site deployment, run `./r
 3. Change pen and target, copy the link address using browser controls, and open it in a fresh tab. Confirm the exact presentation and target restore, including a 0.5 mg pen with an ambiguous strength, a previously generated feature 009 link and the `/penculator/` path.
 4. Enter invalid, empty, zero and malformed target values and confirm the full sharing sentence disappears and no old actionable destination remains. Correct the target and verify the sentence and new link return.
 5. Use keyboard navigation and a screen reader in each language to identify and activate the link in context. Check phone and desktop layouts. Record which checks were actually performed; do not claim accessibility or usability results without observation.
+
+## Validation record — 2026-11-14
+
+- Before and after the change, `npm test` passed: 28 tests. The updated UI test checks the English and Polish sentence segments, destination preservation, invalid-target hiding and recovery; existing settings-link tests cover presentation round trips and subpaths.
+- The browser access host was unavailable, so manual browser copy/open, keyboard and screen-reader checks and phone/desktop visual checks were not performed. These remain outstanding.

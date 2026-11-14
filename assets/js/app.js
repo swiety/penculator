@@ -20,6 +20,7 @@ const targetInput = document.querySelector('#target-dose');
 const targetError = document.querySelector('#target-error');
 const linkError = document.querySelector('#link-error');
 const settingsAnchor = document.querySelector('#settings-link');
+const shareInstruction = document.querySelector('#share-instruction');
 let targetProblem = null;
 let linkProblem = false;
 const pageLocation = globalThis.location;
@@ -35,10 +36,12 @@ function renderTarget() {
     const target = parseTarget(targetInput.value);
     if (settingsAnchor && pageLocation) {
       const href = settingsLink(pageLocation.href, selectedPen.id, target);
-      settingsAnchor.href = href; settingsAnchor.textContent = href; settingsAnchor.hidden = false;
+      settingsAnchor.href = href; settingsAnchor.hidden = false;
+      if (shareInstruction) shareInstruction.hidden = false;
     }
   } catch {
-    if (settingsAnchor) { settingsAnchor.hidden = true; settingsAnchor.removeAttribute('href'); settingsAnchor.textContent = ''; }
+    if (shareInstruction) shareInstruction.hidden = true;
+    if (settingsAnchor) { settingsAnchor.hidden = true; settingsAnchor.removeAttribute('href'); }
   }
 }
 function validateTarget() {
