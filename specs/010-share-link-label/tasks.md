@@ -69,3 +69,7 @@ Setup → foundation → US1 → US2 → polish. US2 builds on US1's shared sent
 ## Implementation Strategy
 
 Complete setup and foundation, then deliver US1 as the smallest useful increment. Add invalid-target hiding and recovery in US2. Finish with the full existing regression suite and document actual manual/accessibility checks; do not claim screen-reader verification without observing it.
+
+## Phase 6: Convergence
+
+- [ ] T014 Wykonaj i zapisz w `specs/010-share-link-label/quickstart.md` brakujące kontrole przeglądarkowe z T013: kopiowanie i otwarcie linku dla katalogu głównego i podścieżki, języki angielski i polski, klawiatura, czytnik ekranu oraz układ telefonu i desktopu; odnotuj wszelkie niedostępne kontrole per T013 / SC-004 (partial)
