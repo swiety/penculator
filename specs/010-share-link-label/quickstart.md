@@ -23,3 +23,9 @@ Open the address printed by Jekyll. To check a project-site deployment, run `./r
 
 - Before and after the change, `npm test` passed: 28 tests. The updated UI test checks the English and Polish sentence segments, destination preservation, invalid-target hiding and recovery; existing settings-link tests cover presentation round trips and subpaths.
 - The browser access host was unavailable, so manual browser copy/open, keyboard and screen-reader checks and phone/desktop visual checks were not performed. These remain outstanding.
+
+## Follow-up validation — 2026-11-14
+
+- `npm test`: 28 tests passed.
+- In the Zen desktop browser at the root path, checked the English and Polish instructions, confirmed that changing the target updated the link destination, opened the link by pointer, verified invalid zero target hid it and correction restored it, and focused/activated it using Tab and Enter. Language preference was restored to Polish afterwards.
+- The accessibility tree exposed the anchor as a link in its sentence; this is not a screen-reader usability test. Browser copy-link, subpath in the browser, phone layout and screen-reader checks in both languages were not performed and remain outstanding. Automated link tests cover subpath serialization and restoration, but do not replace those browser checks.
