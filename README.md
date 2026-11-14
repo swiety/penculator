@@ -12,18 +12,18 @@ Choose **English** or **Polski** using the language selector. The first visit us
 
 ## Development
 
-Install Node.js 22 or later, Ruby 3.3 and Bundler. The GitHub Pages Jekyll/Liquid versions are not compatible with Ruby 4; use Ruby 3.3 for the standard local commands below. From the repository root:
+Install Node.js 22 or later, Ruby and Bundler. From the repository root:
 
 ```sh
 bundle install
 node --test
-bundle exec jekyll serve
+./run.sh
 ```
 
-Open the address printed by Jekyll. To verify a GitHub Pages project-site base path, run:
+Open the address printed by Jekyll (normally http://127.0.0.1:4000/) and press Ctrl-C to stop the server. The script applies a local compatibility shim for the older Liquid version used by GitHub Pages when running on Ruby 4; Ruby 3.3 remains the recommended version for matching the GitHub Pages stack. To verify a GitHub Pages project-site base path, run:
 
 ```sh
-bundle exec jekyll serve --baseurl /penculator
+./run.sh --baseurl /penculator
 ```
 
 Open the address with `/penculator/` appended. The calculation runs in the browser without an account, personal-data storage or a calculation service.
