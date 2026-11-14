@@ -23,3 +23,10 @@ Expect existing calculation and stepping suites and new language-selection, cata
 5. Using the actual rendered page including theme header, test both languages at 768 × 768 and 390 × 844 CSS pixels at 100% zoom with 1 mg and no errors; verify all specified fields, controls, click warning and results are visible at the top. Check width 320 and 200% text enlargement, long text and errors for reflow and reachability. Test selector and all step controls with keyboard, pointer and touch-capable input, including accessible names and focus.
 6. Conduct the first-time-user exercise in SC-004; record participant count, completions and elapsed times. If participants are unavailable, record that the outcome remains unverified.
 7. Serve with `bundle exec jekyll serve --baseurl /penculator` and repeat selection and calculation at the project subpath. Record browser versions, input methods, viewport sizes, results and any checks not performed.
+
+## Implementation check record — 2026-11-14
+
+- `node --test`: 17 tests passed, including preference ordering, malformed and unsupported tags, unavailable storage, matching catalog keys, translated errors, and switching with an existing result and step error in a simulated document.
+- Jekyll project-subpath build succeeded with a temporary Ruby 4 compatibility shim; the standard documented Ruby 3.3 was unavailable. This does not establish browser behavior at the subpath.
+- Browser access host was unavailable, so rendered viewport fit, actual keyboard, pointer and touch behavior, accessibility inspection, and browser preference/storage scenarios remain unverified. Feature 005 layout verification also remains outstanding.
+- No independent Polish reviewer or first-time usability participants were available; translation review and SC-004 remain unverified.

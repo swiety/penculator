@@ -1,7 +1,7 @@
-import { parse } from './calculator.js';
+import { parse, InputError } from './calculator.js';
 
 export function step(raw, field, direction) {
-  if (!['mg', 'ml', 'clicks', 'fortieths'].includes(field) || ![-1, 1].includes(direction)) throw new Error('Invalid adjustment.');
+  if (!['mg', 'ml', 'clicks', 'fortieths'].includes(field) || ![-1, 1].includes(direction)) throw new InputError('adjustment', 'Invalid adjustment.');
   const text = String(raw ?? '').trim();
   if (!text && direction === -1) return '';
   const [numerator, denominator] = parse(text, field);

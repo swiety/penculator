@@ -4,37 +4,37 @@ layout: default
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 <main class="calculator" id="calculator">
   <div class="intro">
-    <h1>Pen dose calculator</h1>
+    <div class="intro-row"><h1 data-i18n="title">Pen dose calculator</h1><label class="language-picker"><span data-i18n="language">Language</span><select id="language"><option value="en" lang="en">English</option><option value="pl" lang="pl">Polski</option></select></label></div>
   </div>
 
   <section class="card" aria-labelledby="calculator-heading">
-    <div class="section-heading"><span class="step">01</span><div><h2 id="calculator-heading">Set up your calculation</h2></div></div>
+    <div class="section-heading"><span class="step">01</span><div><h2 id="calculator-heading" data-i18n="setup">Set up your calculation</h2></div></div>
     <form id="dose-form" novalidate>
       <div class="field pen-field">
-        <label for="pen">Pen type</label>
+        <label for="pen" data-i18n="pen">Pen type</label>
         <select id="pen" name="pen"><option value="15">Mounjaro 15 mg KwikPen</option></select>
-        <p class="hint">4 fixed doses · 15 mg / 0.6 ml per dose</p>
+        <p class="hint" data-i18n="doses">4 fixed doses · 15 mg / 0.6 ml per dose</p>
       </div>
-      <div class="input-heading"><h3>Enter your amounts</h3><p>Values in different fields are added together.</p></div>
+      <div class="input-heading"><h3 data-i18n="enter">Enter your amounts</h3><p data-i18n="add">Values in different fields are added together.</p></div>
       <div class="fields">
-        <div class="field"><label for="mg">Amount <span>in mg</span></label><div class="amount-input"><input id="mg" name="mg" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><div class="step-buttons"><button type="button" data-field="mg" data-direction="-1" aria-label="Decrease mg">−</button><button type="button" data-field="mg" data-direction="1" aria-label="Increase mg">+</button></div></div></div>
-        <div class="field"><label for="ml">Volume <span>in ml</span></label><div class="amount-input"><input id="ml" name="ml" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><div class="step-buttons"><button type="button" data-field="ml" data-direction="-1" aria-label="Decrease ml">−</button><button type="button" data-field="ml" data-direction="1" aria-label="Increase ml">+</button></div></div></div>
-        <div class="field"><label for="clicks">Clicks <span>assumed</span></label><div class="amount-input"><input id="clicks" name="clicks" type="text" inputmode="numeric" placeholder="0" aria-describedby="click-warning error"><div class="step-buttons"><button type="button" data-field="clicks" data-direction="-1" aria-label="Decrease clicks">−</button><button type="button" data-field="clicks" data-direction="1" aria-label="Increase clicks">+</button></div></div></div>
-        <div class="field"><label for="fortieths">Fortieths <span>of 1 ml</span></label><div class="amount-input"><input id="fortieths" name="fortieths" type="text" inputmode="numeric" placeholder="0" aria-describedby="amount-help error"><div class="step-buttons"><button type="button" data-field="fortieths" data-direction="-1" aria-label="Decrease fortieths">−</button><button type="button" data-field="fortieths" data-direction="1" aria-label="Increase fortieths">+</button></div></div></div>
+        <div class="field"><label for="mg" data-i18n="mg">Amount in mg</label><div class="amount-input"><input id="mg" name="mg" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><div class="step-buttons"><button type="button" data-field="mg" data-direction="-1" aria-label="Decrease mg">−</button><button type="button" data-field="mg" data-direction="1" aria-label="Increase mg">+</button></div></div></div>
+        <div class="field"><label for="ml" data-i18n="ml">Volume in ml</label><div class="amount-input"><input id="ml" name="ml" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><div class="step-buttons"><button type="button" data-field="ml" data-direction="-1" aria-label="Decrease ml">−</button><button type="button" data-field="ml" data-direction="1" aria-label="Increase ml">+</button></div></div></div>
+        <div class="field"><label for="clicks" data-i18n="clicks">Clicks (assumed)</label><div class="amount-input"><input id="clicks" name="clicks" type="text" inputmode="numeric" placeholder="0" aria-describedby="click-warning error"><div class="step-buttons"><button type="button" data-field="clicks" data-direction="-1" aria-label="Decrease clicks">−</button><button type="button" data-field="clicks" data-direction="1" aria-label="Increase clicks">+</button></div></div></div>
+        <div class="field"><label for="fortieths" data-i18n="fortieths">Fortieths of 1 ml</label><div class="amount-input"><input id="fortieths" name="fortieths" type="text" inputmode="numeric" placeholder="0" aria-describedby="amount-help error"><div class="step-buttons"><button type="button" data-field="fortieths" data-direction="-1" aria-label="Decrease fortieths">−</button><button type="button" data-field="fortieths" data-direction="1" aria-label="Increase fortieths">+</button></div></div></div>
       </div>
-      <p id="amount-help" class="hint">Enter at least one positive amount. Decimal values may use a comma or point.</p>
-      <p id="click-warning" class="notice"><strong>About clicks:</strong> The 60-click relationship is an unverified assumption. The manufacturer advises against counting clicks to select a dose.</p>
+      <p id="amount-help" class="hint" data-i18n="help">Enter at least one positive amount. Decimal values may use a comma or point.</p>
+      <p id="click-warning" class="notice" data-i18n="warning">About clicks: The 60-click relationship is an unverified assumption. The manufacturer advises against counting clicks to select a dose.</p>
       <p id="error" class="error" role="status" aria-live="polite" hidden></p>
     </form>
   </section>
 
   <section id="result" class="result card" aria-labelledby="result-heading" aria-live="polite" hidden>
-    <div class="section-heading"><span class="step result-step">02</span><div><h2 id="result-heading">Your calculated total</h2><p>Mathematical equivalent</p></div></div>
-    <div class="result-values"><div><p>AMOUNT</p><strong id="result-mg"></strong></div><div><p>VOLUME</p><strong id="result-ml"></strong></div></div>
-    <p id="result-click-warning" class="hint" hidden>This result includes the unverified 60-click assumption; the manufacturer advises against counting clicks to select a dose.</p>
+    <div class="section-heading"><span class="step result-step">02</span><div><h2 id="result-heading" data-i18n="result">Your calculated total</h2><p data-i18n="equivalent">Mathematical equivalent</p></div></div>
+    <div class="result-values"><div><p data-i18n="amount">AMOUNT</p><strong id="result-mg"></strong></div><div><p data-i18n="volume">VOLUME</p><strong id="result-ml"></strong></div></div>
+    <p id="result-click-warning" class="hint" data-i18n="resultWarning" hidden>This result includes the unverified 60-click assumption; the manufacturer advises against counting clicks to select a dose.</p>
   </section>
 
-  <aside class="context" aria-label="Important information"><div class="context-icon" aria-hidden="true">i</div><div><h2>Before you go</h2><p>This is a mathematical conversion, not a dose recommendation or instructions for using a pen. A fractional result does not establish that the pen can deliver it. Follow your prescribed dose and consult your doctor or pharmacist about use.</p><p>After the four fixed doses, do not use any remaining medicine. Check the information supplied with your own product and read the <a href="https://www.medicines.org.uk/emc/product/15486/pil">manufacturer’s patient leaflet</a>.</p></div></aside>
+  <aside class="context" aria-label="Important information"><div class="context-icon" aria-hidden="true">i</div><div><h2 data-i18n="before">Before you go</h2><p data-i18n="context1">This is a mathematical conversion, not a dose recommendation or instructions for using a pen. A fractional result does not establish that the pen can deliver it. Follow your prescribed dose and consult your doctor or pharmacist about use.</p><p><span data-i18n="context2">After the four fixed doses, do not use any remaining medicine. Check the information supplied with your own product and read the </span><a data-i18n="leaflet" href="https://www.medicines.org.uk/emc/product/15486/pil">manufacturer’s patient leaflet</a>.</p></div></aside>
 </main>
-<footer class="disclaimer">Not intended for medical purposes.</footer>
+<footer class="disclaimer" data-i18n="disclaimer">Not intended for medical purposes.</footer>
 <script type="module" src="{{ '/assets/js/app.js' | relative_url }}"></script>

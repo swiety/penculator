@@ -83,3 +83,6 @@ select { padding: 7px 30px 7px 10px; }
   .result-values strong { font-size: 1.1rem; }
 }
 @media (max-width: 350px) { .fields { grid-template-columns: 1fr; } }
+.intro-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px 12px; }
+.language-picker { display: flex; align-items: center; gap: 6px; font-size: .8rem; }
+.language-picker select { width: auto; padding: 4px 24px 4px 8px; }

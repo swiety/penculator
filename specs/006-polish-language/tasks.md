@@ -11,13 +11,13 @@ description: "Implementation tasks for Polish language support"
 ## Phase 1: Setup
 
 - [ ] T001 Review setup and local runtime requirements in `README.md` and `specs/006-polish-language/quickstart.md`; establish a way to serve the site and record blockers.
-- [ ] T002 [P] Inventory visible, conditional, accessible and theme-generated English text and every validation error in `index.html`, `assets/js/app.js`, `assets/js/calculator.js`, `assets/js/step.js`, and `_config.yml`.
+- [X] T002 [P] Inventory visible, conditional, accessible and theme-generated English text and every validation error in `index.html`, `assets/js/app.js`, `assets/js/calculator.js`, `assets/js/step.js`, and `_config.yml`.
 
 ## Phase 2: Foundational
 
-- [ ] T003 Design the shared translation keys and structured error identities for the inventory in `specs/006-polish-language/data-model.md`; preserve field and dose parameters without interpolating user input as markup.
-- [ ] T004 Update `assets/js/calculator.js` and `assets/js/step.js` to expose stable error identifiers and parameters while preserving existing English behavior, arithmetic, validation, precision and step semantics.
-- [ ] T005 Add a focused localization module at `assets/js/i18n.js` with shared catalog lookup and text-safe rendering support; supported language values are exactly `en` and `pl`, and missing keys must be detectable.
+- [X] T003 Design the shared translation keys and structured error identities for the inventory in `specs/006-polish-language/data-model.md`; preserve field and dose parameters without interpolating user input as markup.
+- [X] T004 Update `assets/js/calculator.js` and `assets/js/step.js` to expose stable error identifiers and parameters while preserving existing English behavior, arithmetic, validation, precision and step semantics.
+- [X] T005 Add a focused localization module at `assets/js/i18n.js` with shared catalog lookup and text-safe rendering support; supported language values are exactly `en` and `pl`, and missing keys must be detectable.
 
 **Checkpoint**: Calculation feedback has language-independent identity and both languages can share a consistent catalog.
 
@@ -27,10 +27,10 @@ description: "Implementation tasks for Polish language support"
 
 **Independent test**: With no stored choice and Polish as the first supported browser preference, enter valid and invalid values and inspect all text, warnings, accessible names and product limitations in Polish.
 
-- [ ] T006 [US1] Add complete matching English and Polish translation catalogs in `assets/js/i18n.js` for the T002 inventory, including field-specific errors, step errors, result states, warnings, disclaimer, controls and theme-generated text.
-- [ ] T007 [US1] Implement first-visit preference selection in `assets/js/i18n.js`: “normalize case and match the base language of valid language tags,” skip unsupported or malformed entries, use the ordered exposed browser list, fall back to the single browser language when the list is unavailable or empty, then to `en`.
-- [ ] T008 [US1] Integrate initial language application and structured error rendering in `assets/js/app.js`, preserving existing live calculation and validation behavior; update document language and accessible descriptions.
-- [ ] T009 [US1] Adapt `index.html` and, only as needed, theme configuration or layout files under `_config.yml` and `_layouts/` so all static content, document title, navigation, semantic links and accessible names can be localized without losing the existing warning text.
+- [X] T006 [US1] Add complete matching English and Polish translation catalogs in `assets/js/i18n.js` for the T002 inventory, including field-specific errors, step errors, result states, warnings, disclaimer, controls and theme-generated text.
+- [X] T007 [US1] Implement first-visit preference selection in `assets/js/i18n.js`: “normalize case and match the base language of valid language tags,” skip unsupported or malformed entries, use the ordered exposed browser list, fall back to the single browser language when the list is unavailable or empty, then to `en`.
+- [X] T008 [US1] Integrate initial language application and structured error rendering in `assets/js/app.js`, preserving existing live calculation and validation behavior; update document language and accessible descriptions.
+- [X] T009 [US1] Adapt `index.html` and, only as needed, theme configuration or layout files under `_config.yml` and `_layouts/` so all static content, document title, navigation, semantic links and accessible names can be localized without losing the existing warning text.
 - [ ] T010 [US1] Check Polish wording and safety equivalence against the English inventory in `assets/js/i18n.js`, including units, uncertainty, manufacturer advice, product limitations and the English-language leaflet indicator; record reviewer and unresolved issues in `specs/006-polish-language/quickstart.md`.
 - [ ] T011 [US1] Execute the Polish first-visit, valid/invalid input, warning and accessible-content checks in `specs/006-polish-language/quickstart.md`; correct omissions and record results.
 
@@ -42,10 +42,10 @@ description: "Implementation tasks for Polish language support"
 
 **Independent test**: Switch both ways with empty, valid and invalid inputs, including a step error; reload with a changed browser preference and verify the explicit choice wins when storage is available.
 
-- [ ] T012 [US2] Add a compact, labeled language selector with `English` and `Polski` choices and an identifiable active selection in `index.html`, with keyboard, pointer, touch and assistive-technology support.
-- [ ] T013 [US2] Style the selector and translated content in `assets/css/style.scss` to preserve focus visibility, readable controls and the compact responsive layout, including at 320 CSS pixels and 200% text enlargement.
-- [ ] T014 [US2] Implement the preference lifecycle in `assets/js/i18n.js`: “Initialization selects a language without saving an automatic choice”; an explicit supported choice updates the current language and attempts browser-local persistence, with read/write errors caught.
-- [ ] T015 [US2] Connect the selector in `assets/js/app.js` to re-render static and current dynamic content, including step-generated errors, while preserving selected pen, exact input text, result, approximation status, invalid state and focus.
+- [X] T012 [US2] Add a compact, labeled language selector with `English` and `Polski` choices and an identifiable active selection in `index.html`, with keyboard, pointer, touch and assistive-technology support.
+- [X] T013 [US2] Style the selector and translated content in `assets/css/style.scss` to preserve focus visibility, readable controls and the compact responsive layout, including at 320 CSS pixels and 200% text enlargement.
+- [X] T014 [US2] Implement the preference lifecycle in `assets/js/i18n.js`: “Initialization selects a language without saving an automatic choice”; an explicit supported choice updates the current language and attempts browser-local persistence, with read/write errors caught.
+- [X] T015 [US2] Connect the selector in `assets/js/app.js` to re-render static and current dynamic content, including step-generated errors, while preserving selected pen, exact input text, result, approximation status, invalid state and focus.
 - [ ] T016 [US2] Run the switch, storage, reload, keyboard, pointer and touch scenarios in `specs/006-polish-language/quickstart.md`; verify no stale result or lost focus and record results.
 
 **Checkpoint**: Explicit selection works in either direction and does not discard the user's work.
@@ -56,7 +56,7 @@ description: "Implementation tasks for Polish language support"
 
 **Independent test**: Check mixed, unsupported, empty and unavailable preference lists, language variants, invalid saved values and blocked storage; verify selection and continued use.
 
-- [ ] T017 [US3] Verify and adjust `assets/js/i18n.js` to enforce the preference precedence in `specs/006-polish-language/data-model.md`: “valid explicitly saved browser-local selection” first, then ordered browser preferences, single-language fallback when needed, then `en`; do not save automatic choices.
+- [X] T017 [US3] Verify and adjust `assets/js/i18n.js` to enforce the preference precedence in `specs/006-polish-language/data-model.md`: “valid explicitly saved browser-local selection” first, then ordered browser preferences, single-language fallback when needed, then `en`; do not save automatic choices.
 - [ ] T018 [US3] Exercise mixed preference order, case and region variants, unsupported or malformed entries, invalid saved values, and storage read/write failures using `specs/006-polish-language/quickstart.md`; ensure current-page switching remains functional and record outcomes.
 
 **Checkpoint**: Unsupported or unavailable preferences never prevent access to either language.

@@ -6,6 +6,8 @@ A static calculator for adding pen amounts expressed in mg, ml, clicks and forti
 
 Enter one or more amounts; the combined total updates automatically. Use the plus and minus controls to adjust each field. Values in the fields are added together.
 
+Choose **English** or **Polski** using the language selector. The first visit uses the browser’s language preferences; an explicit choice is remembered in this browser when storage is available.
+
 ## Development
 
 Install Node.js 22 or later, Ruby 3.3 and Bundler. The GitHub Pages Jekyll/Liquid versions are not compatible with Ruby 4; use Ruby 3.3 for the standard local commands below. From the repository root:
