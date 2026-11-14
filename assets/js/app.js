@@ -1,6 +1,7 @@
 import { calculate } from './calculator.js';
 import { pens, pen, getPen } from './pen.js';
 import { step } from './step.js';
+import { defaultSettings, parseTarget, stepTarget, settingsLink, readSettings } from './target-settings.js';
 import { initialLanguage, saveLanguage, translate, errorMessage } from './i18n.js';
 
 const form = document.querySelector('#dose-form');
@@ -15,6 +16,55 @@ let currentError = null;
 const selector = document.querySelector('#language');
 const penSelector = document.querySelector('#pen');
 let selectedPen = pen;
+const targetInput = document.querySelector('#target-dose');
+const targetError = document.querySelector('#target-error');
+const linkError = document.querySelector('#link-error');
+const settingsAnchor = document.querySelector('#settings-link');
+let targetProblem = null;
+let linkProblem = false;
+const pageLocation = globalThis.location;
+const initialSettings = pageLocation ? readSettings(pageLocation.hash) : { status: 'unrelated' };
+if (initialSettings.status === 'valid') selectedPen = getPen(initialSettings.pen);
+if (initialSettings.status === 'invalid') linkProblem = true;
+if (targetInput) targetInput.value = initialSettings.status === 'valid' ? initialSettings.target : defaultSettings(selectedPen).target;
+function renderTarget() {
+  if (!targetInput) return;
+  if (targetError) { targetError.hidden = !targetProblem; targetError.textContent = targetProblem ? translate(language, targetProblem) : ''; }
+  if (linkError) { linkError.hidden = !linkProblem; linkError.textContent = linkProblem ? translate(language, 'linkInvalid') : ''; }
+  try {
+    const target = parseTarget(targetInput.value);
+    if (settingsAnchor && pageLocation) {
+      const href = settingsLink(pageLocation.href, selectedPen.id, target);
+      settingsAnchor.href = href; settingsAnchor.textContent = href; settingsAnchor.hidden = false;
+    }
+  } catch {
+    if (settingsAnchor) { settingsAnchor.hidden = true; settingsAnchor.removeAttribute('href'); settingsAnchor.textContent = ''; }
+  }
+}
+function validateTarget() {
+  try { parseTarget(targetInput.value); targetProblem = null; }
+  catch { targetProblem = 'targetInvalid'; }
+  renderTarget();
+}
+targetInput?.addEventListener('input', validateTarget);
+for (const button of document.querySelectorAll('[data-target-direction]')) {
+  button.addEventListener('click', () => {
+    try { targetInput.value = stepTarget(targetInput.value, Number(button.dataset.targetDirection)); targetProblem = null; }
+    catch (problem) { targetProblem = problem.message; }
+    renderTarget();
+  });
+}
+globalThis.addEventListener?.('hashchange', () => {
+  const restored = readSettings(pageLocation.hash);
+  if (restored.status === 'unrelated') return;
+  const oldPen = selectedPen;
+  if (restored.status === 'invalid') { selectedPen = pen; linkProblem = true; targetInput.value = defaultSettings(pen).target; }
+  else { selectedPen = getPen(restored.pen); targetInput.value = restored.target; linkProblem = false; }
+  targetProblem = null;
+  if (penSelector) penSelector.value = selectedPen.id;
+  renderPen(); renderTarget();
+  if (oldPen?.id !== selectedPen.id) update();
+});
 if (penSelector && document.createElement) {
   penSelector.textContent = '';
   for (const p of pens) {
@@ -42,11 +92,13 @@ penSelector?.addEventListener('change', () => {
   try { selectedPen = getPen(penSelector.value); }
   catch { selectedPen = null; result.hidden = true; error.hidden = false; error.textContent = 'Unknown pen presentation'; return; }
   if (!selectedPen.assumedClicks) form.elements.clicks.value = '';
+  if (targetInput) { targetInput.value = defaultSettings(selectedPen).target; targetProblem = null; linkProblem = false; renderTarget(); }
   renderPen(); update();
 });
 function renderLanguage() {
   if (document.documentElement) document.documentElement.lang = language;
   if ('title' in document) document.title = `${translate(language, 'title')} | Penculator`;
+  for (const element of document.querySelectorAll('[data-i18n-aria]')) { if (element.dataset.i18nAria) element.setAttribute('aria-label', translate(language, element.dataset.i18nAria)); }
   for (const element of document.querySelectorAll('[data-i18n]')) {
     if (element.dataset.i18n) element.textContent = translate(language, element.dataset.i18n);
   }
@@ -60,6 +112,7 @@ function renderLanguage() {
   if (selector) selector.value = language;
   if (currentError) error.textContent = errorMessage(language, currentError);
   renderPen();
+  renderTarget();
 }
 selector?.addEventListener('change', () => {
   if (!['en', 'pl'].includes(selector.value)) return;
@@ -89,7 +142,7 @@ function update() {
     error.hidden = false;
   }
 }
-form.addEventListener('input', update);
+form.addEventListener('input', event => { if (targetInput && event?.target === targetInput) return; update(); });
 form.addEventListener('submit', event => event.preventDefault());
 
 for (const button of document.querySelectorAll('[data-field][data-direction]')) {

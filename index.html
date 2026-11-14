@@ -15,6 +15,14 @@ layout: default
         <select id="pen" name="pen"><option value="mounjaro-15">Mounjaro 15 mg KwikPen</option></select>
         <p id="pen-details" class="hint">4 fixed doses · 15 mg / 0.6 ml per dose</p>
       </div>
+      <div class="field target-field">
+        <label for="target-dose" data-i18n="targetDose">Target amount (mg)</label>
+        <div class="amount-input"><input id="target-dose" name="target-dose" type="text" inputmode="decimal" aria-describedby="target-help target-error"><div class="step-buttons"><button type="button" data-target-direction="-1" data-i18n-aria="targetDecrease" aria-label="Decrease target amount">−</button><button type="button" data-target-direction="1" data-i18n-aria="targetIncrease" aria-label="Increase target amount">+</button></div></div>
+        <p id="target-help" class="hint" data-i18n="targetHelp">A mathematical setting, not a dose recommendation or proof of delivery.</p>
+        <p id="target-error" class="error" role="status" aria-live="polite" hidden></p>
+        <p id="link-error" class="error" role="status" aria-live="polite" hidden></p>
+        <p class="hint"><span data-i18n="shareHelp">Anyone with this link can see the pen and target: </span><a id="settings-link"></a></p>
+      </div>
       <div class="input-heading"><h3 data-i18n="enter">Enter your amounts</h3><p data-i18n="add">Values in different fields are added together.</p></div>
       <div class="fields">
         <div class="field"><label for="mg" data-i18n="mg">Amount in mg</label><div class="amount-input"><input id="mg" name="mg" type="text" inputmode="decimal" placeholder="0" aria-describedby="amount-help error"><div class="step-buttons"><button type="button" data-field="mg" data-direction="-1" aria-label="Decrease mg">−</button><button type="button" data-field="mg" data-direction="1" aria-label="Increase mg">+</button></div></div></div>

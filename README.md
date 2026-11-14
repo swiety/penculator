@@ -10,6 +10,8 @@ Select the presentation matching your own packaging, then enter one or more amou
 
 Choose **English** or **Polski** using the language selector. The first visit uses the browser’s language preferences; an explicit choice is remembered in this browser when storage is available.
 
+The separate target amount starts at the selected pen’s labelled dose and can be edited or adjusted in 1 mg steps. It is a mathematical setting and does not change the amounts added by the calculator. The displayed settings link restores the exact pen and target; anyone receiving it can see those two values.
+
 ## Development
 
 Install Node.js 22 or later, Ruby and Bundler. From the repository root:

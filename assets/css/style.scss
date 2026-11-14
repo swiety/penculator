@@ -86,3 +86,6 @@ select { padding: 7px 30px 7px 10px; }
 .intro-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px 12px; }
 .language-picker { display: flex; align-items: center; gap: 6px; font-size: .8rem; }
 .language-picker select { width: auto; padding: 4px 24px 4px 8px; }
+.target-field { margin-top: 10px; }
+#settings-link { overflow-wrap: anywhere; word-break: break-word; }
+#settings-link:focus-visible { outline: 3px solid #a6d3b4; outline-offset: 2px; }

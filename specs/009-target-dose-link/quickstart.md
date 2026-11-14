@@ -21,3 +21,8 @@ Open the address printed by Jekyll. For a project-site path, run `./run.sh --bas
 6. Check English and Polish labels, target and link errors, focus names and controls on phone and desktop without horizontal scrolling. Test the first-time user target in the specification separately; record unavailable checks and do not claim it passed without participant results.
 
 Contract examples and exact validation rules are in `contracts/settings-link.md`; state transitions are in `data-model.md`.
+
+## Validation record — 2026-11-14
+
+- Before implementation: 21 automated tests passed. After implementation: `npm test` passed with 28 tests, including exact target arithmetic, all-pen link round trips, invalid fragments, target isolation and fragment navigation with retained click input.
+- Jekyll started on Ruby 4 with `./run.sh --host 127.0.0.1 --port 4173 --no-watch --baseurl /penculator`; `/penculator/` returned HTTP 200. The browser automation host was unavailable, so phone/desktop rendering, keyboard operation in a browser and the participant usability target remain unverified.
