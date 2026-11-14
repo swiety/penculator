@@ -34,5 +34,7 @@ export function errorMessage(language, problem) {
     const names = { mg: 'mg', ml: 'ml', clicks: 'kliknięć', fortieths: 'czterdziestych części 1 ml' };
     return `Wprowadź nieujemną wartość ${names[field]}${field === 'clicks' || field === 'fortieths' ? ' jako liczbę całkowitą' : ''}.`;
   }
+  if (problem.code === 'limit' && problem.doseMg) return language === 'pl' ? `Suma przekracza jedną dawkę: ${problem.doseMg.replace('.', ',')} mg (${problem.doseMl.replace('.', ',')} ml).` : `The total exceeds one labelled dose: ${problem.doseMg} mg (${problem.doseMl} ml).`;
+  if (problem.code === 'clickUnavailable') return language === 'pl' ? 'Przeliczanie kliknięć dla tego pena jest niedostępne.' : 'Click conversion is unavailable for this pen.';
   return problem.code ? translate(language, problem.code) : problem.message;
 }

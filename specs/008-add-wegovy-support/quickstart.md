@@ -11,3 +11,8 @@ From repository root, use Node.js 22+, Ruby 3.3 and Bundler. Run `bundle install
 3. Exercise fractional and mixed inputs, both decimal separators, rounding, too-small, all-zero, invalid and over-limit inputs. Switch pens with an existing result and click input; verify unsupported clicks clear, controls disable, remaining inputs revalidate and no stale result survives.
 4. Check relevant leaflet, warning, product context and all labels in English and Polish, on phone and desktop layouts without horizontal scrolling. Check original 15 mg Mounjaro behavior, and preserve all 007 presentations after implementing 008.
 5. Record actual test and manual outcomes, including unavailable checks. For precise state and UI expectations see `data-model.md` and `contracts/ui.md`.
+
+## Validation record (2026-11-14)
+
+- Automated suite: `npm test` passed (21 tests). Baseline before changes: 17 tests passed. Presentation and switching tests are in `tests/pen-presentations.test.js` and `tests/pen-switch.test.js`.
+- Jekyll preview did not run: the available Ruby 4 is incompatible with the pinned Jekyll/Liquid versions (`undefined method tainted?`); Ruby 3.3 was not found. The browser automation host was unavailable. Phone/desktop visual checks and the human usability target remain unverified.

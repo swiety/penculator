@@ -12,8 +12,8 @@ layout: default
     <form id="dose-form" novalidate>
       <div class="field pen-field">
         <label for="pen" data-i18n="pen">Pen type</label>
-        <select id="pen" name="pen"><option value="15">Mounjaro 15 mg KwikPen</option></select>
-        <p class="hint" data-i18n="doses">4 fixed doses · 15 mg / 0.6 ml per dose</p>
+        <select id="pen" name="pen"><option value="mounjaro-15">Mounjaro 15 mg KwikPen</option></select>
+        <p id="pen-details" class="hint">4 fixed doses · 15 mg / 0.6 ml per dose</p>
       </div>
       <div class="input-heading"><h3 data-i18n="enter">Enter your amounts</h3><p data-i18n="add">Values in different fields are added together.</p></div>
       <div class="fields">
@@ -34,7 +34,7 @@ layout: default
     <p id="result-click-warning" class="hint" data-i18n="resultWarning" hidden>This result includes the unverified 60-click assumption; the manufacturer advises against counting clicks to select a dose.</p>
   </section>
 
-  <aside class="context" aria-label="Important information"><div class="context-icon" aria-hidden="true">i</div><div><h2 data-i18n="before">Before you go</h2><p data-i18n="context1">This is a mathematical conversion, not a dose recommendation or instructions for using a pen. A fractional result does not establish that the pen can deliver it. Follow your prescribed dose and consult your doctor or pharmacist about use.</p><p><span data-i18n="context2">After the four fixed doses, do not use any remaining medicine. Check the information supplied with your own product and read the </span><a data-i18n="leaflet" href="https://www.medicines.org.uk/emc/product/15486/pil">manufacturer’s patient leaflet</a>.</p></div></aside>
+  <aside class="context" aria-label="Important information"><div class="context-icon" aria-hidden="true">i</div><div><h2 data-i18n="before">Before you go</h2><p data-i18n="context1">This is a mathematical conversion, not a dose recommendation or instructions for using a pen. A fractional result does not establish that the pen can deliver it. Follow your prescribed dose and consult your doctor or pharmacist about use.</p><p><span id="product-context">After the four fixed doses, do not use any remaining medicine. Check the information supplied with your own product and read the </span><a id="leaflet" data-i18n="leaflet" href="https://www.medicines.org.uk/emc/product/15486/pil">manufacturer’s patient leaflet</a>.</p></div></aside>
 </main>
 <footer class="disclaimer" data-i18n="disclaimer">Not intended for medical purposes.</footer>
 <script type="module" src="{{ '/assets/js/app.js' | relative_url }}"></script>

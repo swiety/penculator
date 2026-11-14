@@ -5,9 +5,6 @@ export class InputError extends Error {
 }
 
 const fields = ['mg', 'ml', 'clicks', 'fortieths'];
-const doseMg = BigInt(pen.doseMg);
-const factors = { mg: [1n, 1n], ml: [doseMg * 10n, 6n], clicks: [doseMg, BigInt(pen.assumedClicks)], fortieths: [doseMg * 10n, 6n * 40n] };
-
 export function parse(value, field) {
   const text = String(value ?? '').trim();
   if (!text) return [0n, 1n];
@@ -26,18 +23,26 @@ function format(numerator, denominator) {
   return { value: fraction ? `${integer}.${fraction}` : `${integer}`, approximate: scaled % denominator !== 0n };
 }
 
-export function calculate(input) {
-  let numerator = 0n;
-  let denominator = 1n;
-  let usesClicks = false;
+export function calculate(input, selectedPen = pen) {
+  if (!selectedPen || !selectedPen.id) throw new Error('Unknown pen presentation');
+  const [doseN, doseD] = parse(selectedPen.doseMg, 'mg');
+  const [mgN, mgD] = parse(selectedPen.basis === 'total' ? selectedPen.totalMg : selectedPen.doseMg, 'mg');
+  const [mlN, mlD] = parse(selectedPen.basis === 'total' ? selectedPen.totalMl : selectedPen.doseMl, 'ml');
+  const ratioN = mgN * mlD, ratioD = mgD * mlN;
+  const factors = { mg: [1n, 1n], ml: [ratioN, ratioD], fortieths: [ratioN, ratioD * 40n], clicks: selectedPen.assumedClicks ? [doseN, doseD * BigInt(selectedPen.assumedClicks)] : [0n, 1n] };
+  let numerator = 0n, denominator = 1n, usesClicks = false;
   for (const field of fields) {
     const [value, scale] = parse(input[field], field);
+    if (field === 'clicks' && value > 0n && !selectedPen.assumedClicks) throw new InputError('clickUnavailable', 'Click conversion is unavailable.', field);
     const [factorN, factorD] = factors[field];
     numerator = numerator * scale * factorD + value * factorN * denominator;
     denominator *= scale * factorD;
     if (field === 'clicks' && value > 0n) usesClicks = true;
   }
   if (numerator === 0n) throw new InputError('positive', 'Enter at least one positive amount.');
-  if (numerator > doseMg * denominator) throw new InputError('limit', 'The total exceeds one labelled dose of 15 mg (0.6 ml).');
-  return { mg: format(numerator, denominator), ml: format(numerator, denominator * 25n), usesClicks };
+  if (numerator * doseD > doseN * denominator) {
+    const error = new InputError('limit', 'The total exceeds one labelled dose.');
+    error.doseMg = selectedPen.doseMg; error.doseMl = selectedPen.doseMl; throw error;
+  }
+  return { mg: format(numerator, denominator), ml: format(numerator * ratioD, denominator * ratioN), usesClicks };
 }

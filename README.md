@@ -2,9 +2,11 @@
 
 A static calculator for adding pen amounts expressed in mg, ml, clicks and fortieths of a millilitre. Results are mathematical conversions, not dosing advice. The 60-click relationship is an unverified assumption; the manufacturer advises against counting clicks to select a dose. This application is not intended for medical purposes.
 
+Supported EU multi-dose presentations include Mounjaro KwikPen (2.5–15 mg), Ozempic pens and Wegovy FlexTouch pens. Match the labelled dose and total pen contents when selecting a pen: presentations with the same dose may differ in concentration. Single-dose pens and syringes are outside this scope. The 60-click assumption is available only for the original Mounjaro 15 mg pen; clicks are unavailable for other presentations. For Wegovy, the mathematical conversion uses total labelled contents and volume; calculated volumes are not a claim about what the device delivers.
+
 ## Using the calculator
 
-Enter one or more amounts; the combined total updates automatically. Use the plus and minus controls to adjust each field. Values in the fields are added together.
+Select the presentation matching your own packaging, then enter one or more amounts; the combined total updates automatically. Use the plus and minus controls to adjust each field. Values in the fields are added together.
 
 Choose **English** or **Polski** using the language selector. The first visit uses the browser’s language preferences; an explicit choice is remembered in this browser when storage is available.
 
